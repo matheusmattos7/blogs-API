@@ -4,13 +4,20 @@ const throwInvalidFields = (message) => {
   throw err;
 };
 
-const throwUserAlreadyRegistered = (message) => {
+const throwSequelizeUniqueConstraintError = (message) => {
   const err = new Error(message);
   err.name = 'SequelizeUniqueConstraintError';
   throw err;
 };
 
+const throwUnauthorizedError = (message) => {
+  const err = new Error(message);
+  err.name = 'UnauthorizedError';
+  throw err;
+};
+
 module.exports = {
   throwInvalidFields,
-  throwUserAlreadyRegistered,
+  throwSequelizeUniqueConstraintError,
+  throwUnauthorizedError,
 };
