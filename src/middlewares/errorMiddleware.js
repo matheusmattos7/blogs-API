@@ -1,7 +1,21 @@
-const status = require('../util/statusHttpCode');
+const statusCode = require('../util/statusHttpCode');
 
-const errorMiddleware = (err, _req, res, _next) => {
-  res.status(status.INTERNAL_SERVER_ERROR).json({ message: err.message });
+const errors = {
+  ValidationError: statusCode.BAD_REQUEST,
+  UnauthorizedError: statusCode.UNAUTHORIZED,
+  NotFoundError: statusCode.NOT_FOUND,
+  SequelizeUniqueConstraintError: statusCode.CONFLICT,
+  JsonWebTokenError: statusCode.UNAUTHORIZED,
 };
 
-module.exports = errorMiddleware;
+const errorMiddlewareHandler = (err, _req, res, _next) => {
+  const { name, message } = err;
+  const status = errors[name];
+
+  if (!status) {
+  return res.sendStatus(statusCode.INTERNAL_SERVER_ERROR);
+}
+  return res.status(status).json({ message });
+};
+
+module.exports = errorMiddlewareHandler;

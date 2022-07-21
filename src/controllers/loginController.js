@@ -7,15 +7,9 @@ const login = async (req, res, next) => {
 
     const token = await loginService.login(email);
 
-    console.log('test1', token);
-    const { error } = token;
-    if (error) {
-      return res.status(error.status).json({ message: error.message });
-    }
-
     return res.status(status.OK).json({ token });
   } catch (err) {
-    return next();
+    return next(err);
   }
 };
 

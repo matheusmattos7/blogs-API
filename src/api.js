@@ -8,8 +8,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use(errorMiddleware);
 app.use(router);
+app.use(errorMiddleware);
 // ...
 
 // É importante exportar a constante`app`,

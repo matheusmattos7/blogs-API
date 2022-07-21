@@ -1,16 +1,12 @@
 const { User } = require('../database/models');
 const { createToken } = require('../token/jwtToken');
+const { throwInvalidFields } = require('./_services');
 
 const login = async (email) => {
   const user = await User.findOne({ where: { email } });
 
   if (!user) {
-    return {
-      error: {
-        status: 400,
-        message: 'Invalid fields',
-      },
-    };
+    return throwInvalidFields('Invalid fields');
   }
 
   const token = createToken({ user });
