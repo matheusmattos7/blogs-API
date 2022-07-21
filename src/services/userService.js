@@ -1,12 +1,12 @@
 const { User } = require('../database/models');
-const { createToken } = require('../token/jwtToken');
-const { throwUserAlreadyRegistered } = require('./_services');
+const { createToken } = require('../middlewares/token/jwtToken');
+const { throwSequelizeUniqueConstraintError } = require('./_services');
 
 const createUser = async ({ displayName, email, password, image }) => {
   const userExist = await User.findOne({ where: { email } });
 
   if (userExist) {
-    return throwUserAlreadyRegistered('User already registered');
+    return throwSequelizeUniqueConstraintError('User already registered');
   }
 
   const user = User.create({
@@ -21,6 +21,17 @@ const createUser = async ({ displayName, email, password, image }) => {
   return token;
 };
 
+const getUser = async () => {
+  const users = await User.findAll({
+     attributes: {
+        exclude: ['password'],
+     },
+  });
+
+  return users;
+};
+
 module.exports = {
   createUser,
+  getUser,
 };

@@ -1,5 +1,5 @@
 const { User } = require('../database/models');
-const { createToken } = require('../token/jwtToken');
+const { createToken } = require('../middlewares/token/jwtToken');
 const { throwInvalidFields } = require('./_services');
 
 const login = async (email) => {
