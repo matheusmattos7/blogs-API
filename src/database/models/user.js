@@ -12,8 +12,7 @@ const User = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
   },
   {
-    tableName: 'users',
-    underscore: true,
+    tableName: 'Users',
     timestamps: false,
   });
 
