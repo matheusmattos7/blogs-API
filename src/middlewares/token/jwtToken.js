@@ -14,13 +14,13 @@ const createToken = (body) => {
     return token;
 };
 
-const validateToken = (data) => {
-  const token = jwt.verify(data, secret);
+const verifyToken = (data) => {
+  const token = jwt.decode(data, secret);
 
   return token;
 };
 
 module.exports = {
   createToken,
-  validateToken,
+  verifyToken,
 };
