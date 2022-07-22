@@ -26,4 +26,7 @@ router
 router
   .post('/categories', validateToken, validateCategory, categoriesController.createCategories);
 
+router
+  .get('/categories', validateToken, categoriesController.getCategories);
+
 module.exports = router;
