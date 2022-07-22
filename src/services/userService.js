@@ -1,6 +1,6 @@
 const { User } = require('../database/models');
 const { createToken } = require('../middlewares/token/jwtToken');
-const { throwSequelizeUniqueConstraintError } = require('./_services');
+const { throwSequelizeUniqueConstraintError, throwNotFound } = require('./_services');
 
 const createUser = async ({ displayName, email, password, image }) => {
   const userExist = await User.findOne({ where: { email } });
@@ -31,7 +31,22 @@ const getUser = async () => {
   return users;
 };
 
+const getUserId = async (id) => {
+  const user = await User.findOne({ where: { id },
+    attributes: {
+      exclude: ['password'],
+    },
+  });
+
+  if (!user) {
+    return throwNotFound('User does not exist');
+  }
+
+  return user;
+};
+
 module.exports = {
   createUser,
   getUser,
+  getUserId,
 };
