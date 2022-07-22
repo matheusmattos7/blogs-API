@@ -24,7 +24,7 @@ router
   .get('/user/:id', validateToken, userController.getUserId);
 
 router
-  .post('/categories', validateToken, validateCategory, categoriesController.createCategories);
+  .post('/categories', validateCategory, validateToken, categoriesController.createCategories);
 
 router
   .get('/categories', validateToken, categoriesController.getCategories);
