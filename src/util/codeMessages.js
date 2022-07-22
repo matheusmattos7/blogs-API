@@ -5,6 +5,7 @@ const message = {
   EMAIL_VALID: '"email" must be a valid email',
   PASSWORD_MIN: '"password" length must be at least 6 characters long',
   REGISTERED_USER: 'User already registered',
+  NAME_IS_REQUIRED: '"name" is required',
 };
 
 module.exports = message;
