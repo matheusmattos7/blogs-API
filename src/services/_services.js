@@ -16,8 +16,15 @@ const throwUnauthorizedError = (message) => {
   throw err;
 };
 
+const throwNotFound = (message) => {
+  const err = new Error(message);
+  err.name = 'NotFoundError';
+  throw err;
+};
+
 module.exports = {
   throwInvalidFields,
   throwSequelizeUniqueConstraintError,
   throwUnauthorizedError,
+  throwNotFound,
 };
