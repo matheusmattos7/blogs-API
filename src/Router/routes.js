@@ -4,10 +4,12 @@ const router = express.Router();
 
 const loginController = require('../controllers/loginController');
 const userController = require('../controllers/userController');
+const categoriesController = require('../controllers/categoriesController');
 
 const { validateLogin } = require('../middlewares/validateLogin');
 const { validateUser } = require('../middlewares/validateUser');
 const { validateToken } = require('../middlewares/validateToken');
+const { validateCategory } = require('../middlewares/validateCategory');
 
 router
   .post('/login', validateLogin, loginController.login);
@@ -20,5 +22,8 @@ router
 
 router
   .get('/user/:id', validateToken, userController.getUserId);
+
+router
+  .post('/categories', validateToken, validateCategory, categoriesController.createCategories);
 
 module.exports = router;
