@@ -39,8 +39,17 @@ const categorySchema = Joi.object({
   }),
 });
 
+const blogPostSchema = Joi.object({
+  title: Joi.string().empty().required(),
+  content: Joi.string().empty().required(),
+  categoryIds: Joi.array().empty().required(),
+}).messages({
+  'string.empty': `${status.BAD_REQUEST}+${message.SOME_REQUIRED}`,
+});
+
 module.exports = {
   loginSchema,
   userSchema,
   categorySchema,
+  blogPostSchema,
 };
