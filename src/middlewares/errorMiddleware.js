@@ -13,7 +13,7 @@ const errorMiddlewareHandler = (err, _req, res, _next) => {
   const status = errors[name];
 
   if (!status) {
-  return res.sendStatus(statusCode.INTERNAL_SERVER_ERROR);
+  return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message });
 }
   return res.status(status).json({ message });
 };
