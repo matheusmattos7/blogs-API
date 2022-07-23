@@ -37,4 +37,7 @@ router
 router
   .get('/post', validateToken, postController.getPosts);
 
+  router
+  .get('/post/:id', validateToken, postController.getPostsById);
+
 module.exports = router;
