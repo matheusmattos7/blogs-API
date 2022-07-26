@@ -48,4 +48,7 @@ router
   .put('/post/:id',
   validateUpdateTitleAndContent, validateToken, userValidation, postController.updatePost);
 
+router
+  .delete('/post/:id', validateToken, postController.removePostById);
+
 module.exports = router;
