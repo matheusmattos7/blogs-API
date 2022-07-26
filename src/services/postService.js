@@ -5,7 +5,7 @@ const sequelize = new Sequelize(config.development);
 
 const { BlogPost, PostCategory, Category, User } = require('../database/models');
 const { categoryIdsExist } = require('../middlewares/validateBlogpost');
-const { throwNotFound } = require('./_services');
+const { throwNotFound, throwUnauthorizedError } = require('./_services');
 
 const createPost = async ({ title, content, categoryIds }, { id: userId }) => {
   const t = await sequelize.transaction();
@@ -69,9 +69,26 @@ const updatePost = async (id, title, content) => {
   return updatedPost;
 };
 
+const removePostById = async (id, user) => {
+  const post = await BlogPost.findByPk(id);
+
+  if (!post) {
+    return throwNotFound('Post does not exist');
+  }
+
+  if (post.userId !== user.id) {
+    return throwUnauthorizedError('Unauthorized user');
+  }
+
+  const postDeleted = await BlogPost.destroy({ where: { id } });
+
+  return postDeleted;
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostsById,
   updatePost,
+  removePostById,
 };
