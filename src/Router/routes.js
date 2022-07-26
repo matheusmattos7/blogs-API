@@ -11,7 +11,11 @@ const { validateLogin } = require('../middlewares/validateLogin');
 const { validateUser } = require('../middlewares/validateUser');
 const { validateToken } = require('../middlewares/validateToken');
 const { validateCategory } = require('../middlewares/validateCategory');
-const { validateBlogPost } = require('../middlewares/validateBlogpost');
+const {
+  validateBlogPost,
+   validateUpdateTitleAndContent,
+   userValidation,
+   } = require('../middlewares/validateBlogpost');
 
 router
   .post('/login', validateLogin, loginController.login);
@@ -37,7 +41,11 @@ router
 router
   .get('/post', validateToken, postController.getPosts);
 
-  router
+router
   .get('/post/:id', validateToken, postController.getPostsById);
+
+router
+  .put('/post/:id',
+  validateUpdateTitleAndContent, validateToken, userValidation, postController.updatePost);
 
 module.exports = router;
