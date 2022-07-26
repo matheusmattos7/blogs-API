@@ -51,9 +51,25 @@ const updatePost = async (req, res, next) => {
   }
 };
 
+const removePostById = async (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+    const { id } = req.params;
+
+    const { user } = verifyToken(authorization);
+
+    const result = await postService.removePostById(id, user);
+
+    return res.status(204).json(result);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostsById,
   updatePost,
+  removePostById,
 };
