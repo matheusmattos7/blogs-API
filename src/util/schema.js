@@ -47,9 +47,17 @@ const blogPostSchema = Joi.object({
   'string.empty': `${status.BAD_REQUEST}+${message.SOME_REQUIRED}`,
 });
 
+const blogPostSchemaUpdate = Joi.object({
+  title: Joi.string().empty().required(),
+  content: Joi.string().empty().required(),
+}).messages({
+  'string.empty': `${status.BAD_REQUEST}+${message.SOME_REQUIRED}`,
+});
+
 module.exports = {
   loginSchema,
   userSchema,
   categorySchema,
   blogPostSchema,
+  blogPostSchemaUpdate,
 };
