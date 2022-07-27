@@ -1,3 +1,4 @@
+const { verifyToken } = require('../middlewares/token/jwtToken');
 const userService = require('../services/userService');
 const status = require('../util/statusHttpCode');
 
@@ -35,8 +36,23 @@ const getUserId = async (req, res, next) => {
   }
 };
 
+const removeUserId = async (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+
+    const { user } = verifyToken(authorization);
+
+    const result = await userService.removeUserId(user);
+
+    return res.status(204).json(result);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   createUser,
   getUser,
   getUserId,
+  removeUserId,
 };
