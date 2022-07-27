@@ -51,4 +51,7 @@ router
 router
   .delete('/post/:id', validateToken, postController.removePostById);
 
+router
+  .delete('/user/me', validateToken, userController.removeUserId);
+
 module.exports = router;
