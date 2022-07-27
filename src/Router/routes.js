@@ -36,6 +36,9 @@ router
   .get('/categories', validateToken, categoriesController.getCategories);
 
 router
+  .get('/post/search', validateToken, postController.searchPostTerm);
+
+router
   .post('/post', validateBlogPost, validateToken, postController.createPost);
 
 router
