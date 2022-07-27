@@ -66,10 +66,23 @@ const removePostById = async (req, res, next) => {
   }
 };
 
+const searchPostTerm = async (req, res, next) => {
+  try {
+    const { q } = req.query;
+
+    const result = await postService.searchPostTerm(q);
+
+    return res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostsById,
   updatePost,
   removePostById,
+  searchPostTerm,
 };
