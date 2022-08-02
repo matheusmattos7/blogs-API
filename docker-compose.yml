@@ -1,36 +1,39 @@
-version: "3"
+version: '3.0'
 
 services:
-  node:
-    build: .
-    user: node
-    working_dir: /app
-    volumes:
-      - ./:/app
-    container_name: blogs_api
-    tty: true
-    stdin_open: true
-    command: bash
-    restart: always
-    depends_on:
-      - db
+  api:
+    build: ./
+    restart: 'always'
     ports:
       - 3000:3000
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      HOSTNAME: db
-      JWT_SECRET: secretJWT
+      - MYSQL_USER=root
+      - MYSQL_DB_NAME=blogs-api
+      - MYSQL_PASSWORD=password
+      - MYSQL_HOST=localhost
+      - HOSTNAME=db
+      - JWT_SECRET=secretJWT
+      - MYSQL_PORT=3306
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
   db:
-    container_name: blogs_api_db
-    image: mysql:8.0.21
-    platform: linux/x86_64
+    container_name: api_db
+    image: mysql:5.7
     restart: always
     ports:
       - 3306:3306
       - 33060:33060
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      - MYSQL_ROOT_PASSWORD=password
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
 
 networks:
   default:
