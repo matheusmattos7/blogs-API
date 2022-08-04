@@ -13,8 +13,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_DB_NAME=blogs-api
       - MYSQL_PASSWORD=password
-      - MYSQL_HOST=localhost
-      - HOSTNAME=db
+      - MYSQL_HOST=db
       - JWT_SECRET=secretJWT
       - MYSQL_PORT=3306
     healthcheck:
@@ -23,7 +22,7 @@ services:
       retries: 5
   db:
     container_name: api_db
-    image: mysql:5.7
+    image: mysql:8.0.21
     restart: always
     ports:
       - 3306:3306
@@ -31,7 +30,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
     healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3000"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 10s
       retries: 5
 
