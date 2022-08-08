@@ -14,7 +14,7 @@ O Projeto consiste de uma criação de uma API rest de Blogs utilizando a arquit
 
 # Tecnologias utilizadas
 
-Node.js, Docker, MySQL, Sequelize, Arquitetura MSC, JOI, JWT, swagger.
+Node.js, Docker, MySQL, Sequelize, Arquitetura MSC, JOI, JWT, Swagger.
 
 ## Orientação
 
