@@ -93,4 +93,4 @@ O acesso os endpoints pode ser feito através do swagger, após iniciar a aplica
 </details>
 
 ---
-Construído por [Matheus mattos](https://gist.github.com/matheusmattos7) no curso de desenolvimento web da Trybe.
+Construído por [Matheus mattos](https://gist.github.com/matheusmattos7) no curso de desenvolvimento web da Trybe.
