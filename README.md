@@ -2,7 +2,7 @@
 
 Projeto backend feito para treinarmos o conteúdo de Hard Skills do curso da trybe.
 
-O Projeto consiste de uma criação de uma API rest de Blogs utilizando a arquitetura MSC, onde teremos as principais funções como a criação de um usuário, login do mesmo e manipuação de posts no blog, onde as funções disponíveis ficarão melhor exemplificadas no tópico de [EndPoints](#endpoints).
+O Projeto consiste de uma criação de uma API rest de Blogs utilizando a arquitetura MSC, onde teremos as principais funções como a criação de um usuário, login do mesmo e manipulação de posts no blog, onde as funções disponíveis ficarão melhor exemplificadas no tópico de [EndPoints](#endpoints).
 
 # Habilidades
 
@@ -27,7 +27,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
   
   ## 👉 Com Docker
   
-  1. Clone o reposítório:
+  1. Clone o repositório:
   
   ```
   git clone git@github.com:matheusmattos7/blogs-API.git
@@ -38,9 +38,9 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
   ```
   docker-compose up -d --build
   ```
-  3. A aplicação estára rodando na porta 3000, portanto, basta acessa-lá em: http://localhost:3000
+  3. A aplicação estará rodando na porta 3000, portanto, basta acessá-la em: http://localhost:3000
   
-  4. Caso queira para a aplicação execute o comando 
+  4. Caso queira parar a aplicação execute o comando 
   
   ```
   docker-compose down
@@ -48,7 +48,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
   
   ## 👉 Sem Docker
 
-  1. Clone o reposítório:
+  1. Clone o repositório:
   
   ```
   git clone git@github.com:matheusmattos7/blogs-API.git
@@ -63,7 +63,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
   ```
   npm start
   ```
-  4. A aplicação estará rodando na porta 3000, portanto, basta acessa-lá em: http://localhost:3000
+  4. A aplicação estará rodando na porta 3000, portanto, basta acessá-la em: http://localhost:3000
   
 
   <br/>
@@ -71,7 +71,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 
 ### EndPoints
 
-O acesso os endpoints pode ser feito através do swagger, após iniciar a aplicação acesse o link http://localhost:3000/doc-api, nele será possível tanto a melhor visualização dos endpoints, como também testá-las sem o uso de uma ferramenta de requisição como o `Insomnia` ou `Postman`.
+O acesso aos endpoints pode ser feito através do swagger, após iniciar a aplicação acesse o link http://localhost:3000/doc-api, nele será possível tanto a melhor visualização dos endpoints, como também testá-las sem o uso de uma ferramenta de requisição tal como o `Insomnia` ou `Postman`.
 
 <details>
 <summary><strong>Resumo sobre os endpoints</strong></summary>
